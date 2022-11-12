@@ -7,11 +7,29 @@ import { Filter } from '../components/Filter/Filter';
 import { Box } from './Box';
 import { Title, TitleContacts } from './Titles/TitlesStyled';
 
+const LS_KEY = 'contacts';
+
 class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const localStorageContacts = JSON.parse(localStorage.getItem(LS_KEY));
+
+    if (localStorageContacts) {
+      this.setState({ contacts: localStorageContacts });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { contacts } = this.state;
+
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem(LS_KEY, JSON.stringify(contacts));
+    }
+  }
 
   addContacts = dataContact => {
     const { contacts } = this.state;
