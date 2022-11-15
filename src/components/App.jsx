@@ -75,7 +75,6 @@ class App extends Component {
   render() {
     const { filter } = this.state;
 
-    // const normalyzeFilter = filter.toLowerCase();
     const visibileContacts = this.getFilteredContact();
 
     return (
