@@ -19,6 +19,12 @@ class Forma extends Component {
 
     this.props.onSubmit({ name, number });
 
+    if (this.props.contacts.some(contact => contact.name === name)) {
+      return;
+      /* Перевірка при сабміті: якщо таке ім'я контакта вже є, то не
+        очищувати форму після алерта. */
+    }
+
     this.reset();
   };
 

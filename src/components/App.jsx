@@ -73,14 +73,17 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
 
     const visibileContacts = this.getFilteredContact();
 
     return (
       <Box p={[4]}>
         <Title>Phonebook</Title>
-        <Forma onSubmit={dataContact => this.addContacts(dataContact)} />
+        <Forma
+          onSubmit={dataContact => this.addContacts(dataContact)}
+          contacts={contacts}
+        />
 
         <TitleContacts>Contacts</TitleContacts>
         <Filter onChangeFilter={this.changeFilter} value={filter} />
